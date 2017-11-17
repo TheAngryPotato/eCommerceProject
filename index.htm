@@ -1,0 +1,112 @@
+<!doctype HTML>
+<html>
+   <head>
+   <title>Online Milk Store</title> 
+
+    <style>
+         img{
+             width:150px;
+         }
+         body{
+             background-color: royalblue;
+         }
+         p{
+         border:px
+         }
+         
+    
+    </style>
+    <script>
+        //Global variables 
+        var p1 = 4.99, wp1=3.99;
+        var p2 = 5.99; wp2=3.99;
+        var p3 = 4.99; wp3=3.99; 
+        function initPrices(){
+            document.getElementById("Milk1").innerHTML = "price $" + p1;
+            document.getElementById("Milk2").innerHTML = "price $" + p2;
+            document.getElementById("Milk3").innerHTML = "price $" + p3;
+        }
+        function processOrder(){
+            var q1 = parseInt(document.getElementById("qty1").value);
+            var q2 = parseInt(document.getElementById("qty2").value);
+            var q3 = parseInt(document.getElementById("qty3").value);
+            //Calculation
+            var customer_subtotal = (p1*q1)  + (p2*q2) + (p3*q3);
+            var company_subtotal = (wp1*q1)  + (wp2*q2) + (wp3*q3);
+            var p=customer_subtotal-company_subtotal;
+            var tr=0.08575;
+            var tax=(customer_subtotal*tr).toFixed(2);
+            var shipping=0;
+            //shipping cost
+            if(customer_subtotal<100){
+                shipping=25;
+            }else if(customer_subtotal>100 && customer_subtotal<200){
+                shipping=10;
+            }else shipping=0;{
+            } 
+        var cust_total=parseInt(customer_subtotal)+parseInt(tax)+parseInt(shipping);
+        var item_sold=q1+q2+q3;
+        //display
+        var op=document.getElementById("output");
+        var build="";
+
+        var build=" ";
+        build+="<br><hr>"
+        build+="<pre>";
+        build+="<u>**Customer Information**</u> <br>";
+        build+="Subtotal:                  $" + customer_subtotal + "<br>";
+        build+="Tax:                       $" + tax + "<br>";
+        build+="Shipping and Handling:     $" + shipping + "<br>";
+        build+="Total:                     $" + cust_total + "<br><hr>";
+        build+="<u>**Customer Information**</u> <br>";
+        build+="Customer Subtotal:         $" + customer_subtotal + "<br>";
+        build+="Company Subtotal:          $" + company_subtotal + "<br>";
+        build+="Profit/Loss:               $" + p + "<br>";
+        build+="Total Item Sold:            " + item_sold + "<br>";
+        op.innerHTML=build;
+        }
+  
+
+       
+       </script>
+   </head>
+   <body onload="initPrices()">
+       <h1> Whole Milk </h1>
+       <!---Item !-->
+       <div>
+           <img src="Milk1.jpg"><br>
+           <p>Homogenized Whole Milk with vitamin D and Calcium</p><br>
+           <span id="Milk1"></span>
+           <input type="text" id="qty1"placeholder="Enter Amount">
+         
+       </div>
+
+        <h1> Chocolate Milk </h1>
+       <!---Item !-->
+       <div>
+           <img src="Milk2.jpg"><br>
+           <p>Homogenized Low Fat Chocolate Milk </p><br>
+           <span id="Milk2"></span>
+           <input type="text" id="qty2"placeholder="Enter Amount">
+             
+       </div> 
+         <!---Item !-->
+         <h1> Lowfat Milk </h1>
+       <div>
+           <img src="Milk3.jpg"><br>
+           <p>Homogenized Low Fat 1% Milk </p><br>
+           <span id="Milk3"></span>
+           <input type="text" id="qty3"placeholder="Enter Amount">
+       
+       </div> 
+       <button onclick="processOrder()"> Process Order </button>
+       <br> 
+       <div id="output"></div>
+
+     
+   </body> 
+
+ 
+
+<html>           
+
